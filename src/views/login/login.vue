@@ -51,11 +51,6 @@ export default{
             }
         }
     },
-    created(){
-        if(this.$store.getters.getAccessToken !== ""){
-            this.$router.push({name:"servicecontrol"})
-        }
-    },
     methods:{
         onSubmit(){
             if(this.loginInfo.userId.length === 0){

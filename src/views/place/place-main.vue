@@ -151,10 +151,6 @@
                 </tbody>
                 <!-- //엑셀용 테이블 -->
             </table>
-            <page-component :pageData="page"
-                            @onPage="pageClick"
-                            v-if="this.spotList.length !== 0"
-                        />
         </section>
     </div>
 </section>

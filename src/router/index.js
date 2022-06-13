@@ -16,7 +16,7 @@ const routes = [
     // 로그인
     {
         path: '/',
-        name: 'login',
+        name: 'login2',
         component: Login
     },
     {
@@ -43,12 +43,6 @@ const routes = [
         }
     },
     //기본 경로
-    {
-        path: '*',
-        beforeEnter: (to, from, next) => {
-            next('/login')
-        }
-    }
 ]
 
 const router = new VueRouter({
@@ -59,23 +53,23 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     next()
-        // if(to.matched.components!==undefined){
-        //     if(to.matched.some( (item)=> item.components.meta.superAdmin)){
-        //         if(myAuth===authType.SUPERADMIN){
-        //             next();
-        //         }
-        //         else{
-        //             alert("권한이 없습니다.");
-        //             next(-1);
-        //         }
-        //     }
-        //     else{
-        //         next()
-        //     }
-        // }
-        // else{
-        //     next()
-        // }
+        if(to.matched.components!==undefined){
+            if(to.matched.some( (item)=> item.components.meta.superAdmin)){
+                if(myAuth===authType.SUPERADMIN){
+                    next();
+                }
+                else{
+                    alert("권한이 없습니다.");
+                    next(-1);
+                }
+            }
+            else{
+                next()
+            }
+        }
+        else{
+            next()
+        }
 })
 
 
