@@ -1,4 +1,4 @@
-# news-collect-web
+# tmaas_cms
 
 ## Project setup
 ```
