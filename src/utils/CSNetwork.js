@@ -18,7 +18,7 @@ export default {
 
     // 뉴스 목록
     reqNewsList: function(params) {
-        return networkUtils.POST('/news/list', params);
+        return networkUtils.GET('/news/list', params);
     },
 
 }

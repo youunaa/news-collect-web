@@ -26,10 +26,10 @@
                 </thead>
                 <tbody>
                     <tr v-for="(item, index) in newsList" :key="index">
-                        <td>{{ index + 1 }}</td> 
+                        <td>{{ (page.size * (totalPages - page.page + 1 )) - index }}</td> 
                         <td>{{ newsTypeFormat(item.type) }}</td>
                         <td>{{ item.keyword }}</td>
-                        <td>
+                        <td class="txt_left">
                             <a :href="item.newsUrl" target="_blank" style="text-decoration:underline;color:rgba(51, 126, 169, 1)">
                                 {{ item.subject }}
                             </a>
@@ -38,6 +38,9 @@
                     </tr>
                 </tbody>
             </table>
+            <page-component :pageData="page"
+                @onPage="pageClick" 
+            />
         </section>
     </div>
 </section>
@@ -54,6 +57,12 @@ export default {
 
     data() {
         return {
+            page:{
+                page  : 1,
+                total : 0,
+                size : 10,
+            },
+            totalPages: 0,
             newsList : []
         }
     },
@@ -64,10 +73,17 @@ export default {
 
     methods: {
         reqNewsList() {
-            axios.reqNewsList()
+            axios.reqNewsList(this.page)
             .then((res) => {
-                this.newsList = res.body;
+                this.newsList = res.body.content;
+                this.page.total = res.body.totalElements;
+                this.totalPages = res.body.totalPages;
             });
+        },
+
+        pageClick(page) {
+            this.page.page = page;
+            this.reqNewsList();
         },
 
         newsTypeFormat(type) {

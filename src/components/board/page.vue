@@ -24,7 +24,7 @@ export default {
                 return {
                     total: 60,
                     page: 1,
-                    count: 10
+                    size: 10
                 }
             }
         },
@@ -39,7 +39,7 @@ export default {
             return value
         },
         totalPage: function () {
-            return Math.floor(this.pageData.total / this.pageData.count) + ((this.pageData.total % this.pageData.count) == 0 ? 0 : 1)
+            return Math.floor(this.pageData.total / this.pageData.size) + ((this.pageData.total % this.pageData.size) == 0 ? 0 : 1)
         },
         countInPages: function () {
             let currPages = this.totalPage - (this.startPage-1)
