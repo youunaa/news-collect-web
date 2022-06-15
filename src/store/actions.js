@@ -14,9 +14,9 @@ export default {
 
             if (accessToken) {
                 commit(SET_ACCESS_TOKEN, accessToken);
-                router.push({ name: 'contractmain' });
+                router.push('collect/setting');
             } else {
-                router.push({ name: 'login' });
+                router.push('login');
             }
         }).catch(res => (
             alert(res)

@@ -8,12 +8,12 @@ export default {
     
     // 키워드 목록
     reqKewordList: function(params) {
-        return networkUtils.POST('/keword/list', params);
+        return networkUtils.POST('/data/list', params);
     },
 
     // 키워드 등록
     reqKewordRegist: function(params) {
-        return networkUtils.POST('/keword/reg', params);
+        return networkUtils.POST('/data/keword/reg', params);
     },
 
     // 사이트 목록

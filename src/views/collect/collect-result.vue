@@ -89,68 +89,6 @@
                     </tr>
                 </tbody>
             </table>
-            <!-- 엑셀용 테이블 -->
-            <table id="table" style="display : none">
-                <colgroup>
-                    <col style="width: 60px;">
-                    <col style="width: 100px;">
-                    <col style="width: 100px;">
-                    <col>
-                    <col style="width:100px;">
-                    <col style="width:80px;">
-                    <col style="width:80px;">
-                    <col style="width:80px;">
-                    <col style="width:80px;">
-                    <col style="width:50px;">
-                    <col style="width:100px;">
-                    <col style="width:180px;">
-                    <col style="width:100px;">
-                </colgroup>
-                <thead>
-                    <tr>
-                        <th rowspan="2">No</th>
-                        <th rowspan="2">데이터 구분</th>
-                        <th rowspan="2">카테고리</th>
-                        <th rowspan="2">추천장소명</th>
-                        <th rowspan="2">원본</th>
-                        <th colspan="4">등록언어</th>
-                        <th rowspan="2">리뷰수</th>
-                        <th rowspan="2">등록자</th>
-                        <th rowspan="2">등록일시</th>
-                        <th rowspan="2">서비스 상태</th>
-                    </tr>
-                    <tr>
-                        <th>한국어</th>
-                        <th>영어</th>
-                        <th>일본어</th>
-                        <th>중국어</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(list,item) in excelList" :key="item">
-                        <td>{{page.total - ((item + page.pageIdx) - 1)}}</td>
-                        <td v-if="list.content_idx === undefined">직접 등록</td>
-                        <td v-else>인포디오</td>
-                        <td>{{list.category}}</td>
-                        <td class="txt_left">{{list.spot_name_kor}}</td>
-                        <td>한국어</td>
-                        <td v-if="list.lang_kor === true">O</td>
-                        <td v-else><span class="lang_false"></span></td>
-                        <td v-if="list.lang_eng === true">O</td>
-                        <td v-else><span class="lang_false"></span></td>
-                        <td v-if="list.lang_jpn === true">O</td>
-                        <td v-else><span class="lang_false"></span></td>
-                        <td v-if="list.lang_chn === true">O</td>
-                        <td v-else><span class="lang_false"></span></td>
-                        <td>{{list.review_tot_count}}</td>
-                        <td>{{list.admin_name}}</td>
-                        <td>{{dateUtil.parser(list.create_dt)}}</td>
-                        <td v-if="list.op_yn === true" class="clr_blue">서비스중</td>
-                        <td v-else class="clr_gray">서비스중지</td>
-                    </tr>
-                </tbody>
-                <!-- //엑셀용 테이블 -->
-            </table>
         </section>
     </div>
 </section>

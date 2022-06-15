@@ -25,12 +25,12 @@ export default {
         message: "Left 컴포넌트",
         treeData: [
             {
-                title: "수집 데이터 관리",
-                href: "/contract",
+                title: "수집데이터 설정",
+                href: "/collect/setting",
             },
             {
-                title: "수집 결과 관리",
-                href: "/place",
+                title: "수집데이터 결과",
+                href: "/collect/result",
             },
         ]
     }),

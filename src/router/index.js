@@ -5,44 +5,38 @@ import Left from '@/components/layout/Left'
 
 // 로그인
 import Login from '@/views/login/login'
-
-import ContractMain from '@/views/contract/contract-main'
-
-import PlaceMain from '@/views/place/place-main'
+// 수집데이터 설정
+import CollectSetting from '@/views/collect/collect-setting'
+// 수집데이터 결과
+import CollectResult from '@/views/collect/collect-result'
 
 Vue.use(VueRouter)
 
 const routes = [
     // 로그인
     {
-        path: '/',
-        name: 'login2',
-        component: Login
-    },
-    {
         path: '/login',
         name: 'login',
         component: Login
     },
     {
-        path: '/contract',
-        name: 'contractmain',
+        path: '/collect/setting',
+        name: 'collectSetting',
         components: {
             header: Header,
             left: Left,
-            default: ContractMain
+            default: CollectSetting
         }
     },
     {
-        path: '/place',
-        name: 'placemain',
+        path: '/collect/result',
+        name: 'collectResult',
         components: {
             header: Header,
             left: Left,
-            default: PlaceMain
+            default: CollectResult
         }
     },
-    //기본 경로
 ]
 
 const router = new VueRouter({
