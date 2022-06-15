@@ -36,9 +36,13 @@
                         </td>
                         <td class="txt_left">{{ timeFormat(item.createDt) }}</td>
                     </tr>
+                    <tr v-if="newsList.length === 0">
+                        <td colspan="5">데이터가 없습니다.</td>
+                    </tr>
                 </tbody>
             </table>
             <page-component :pageData="page"
+                v-if="newsList.length > 0"
                 @onPage="pageClick" 
             />
         </section>

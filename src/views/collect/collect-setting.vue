@@ -40,13 +40,13 @@
                     </thead>
                     <tbody>
                         <tr v-for="(item, index) in collectDataList" :key="index">
-                            <td>{{ item.id }}</td> 
+                            <td>{{ index + 1 }}</td> 
                             <td>{{ newsTypeFormat(item.newsType) }}</td>
                             <td>{{ item.keyword }}</td>
                             <td class="txt_left">{{ timeFormat(item.createDt) }}</td>
                         </tr>
                         <tr v-if="collectDataList.length === 0">
-                            <td colspan="4">검색 결과가 없습니다.</td>
+                            <td colspan="4">데이터가 없습니다.</td>
                         </tr>
                     </tbody>
                 </table>
