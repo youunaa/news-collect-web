@@ -16,13 +16,9 @@ export default {
         return networkUtils.POST('/data/keword/reg', params);
     },
 
-    // 사이트 목록
-    reqSiteList: function(params) {
-        return networkUtils.POST('/site/list', params);
+    // 뉴스 목록
+    reqNewsList: function(params) {
+        return networkUtils.POST('/news/list', params);
     },
 
-    // 사이트 등록
-    reqSiteRegist: function(params) {
-        return networkUtils.POST('/site/reg', params);
-    },
 }
