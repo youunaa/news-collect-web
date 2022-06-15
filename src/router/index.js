@@ -5,6 +5,8 @@ import Left from '@/components/layout/Left'
 
 // 로그인
 import Login from '@/views/login/login'
+// 회원가입
+import Join from '@/views/login/join'
 // 수집데이터 설정
 import CollectSetting from '@/views/collect/collect-setting'
 // 수집데이터 결과
@@ -18,6 +20,12 @@ const routes = [
         path: '/login',
         name: 'login',
         component: Login
+    },
+    // 회원가입
+    {
+        path: '/join',
+        name: 'join',
+        component: Join
     },
     {
         path: '/collect/setting',

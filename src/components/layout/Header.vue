@@ -4,7 +4,7 @@
       <a href="/collect/setting">뉴스데이터<br />수집 시스템</a>
     </h1>
     <div class="user_infoBox fr">
-      <strong class="user_info_txt" @click="myPageClick">
+      <strong class="user_info_txt">
       </strong>
       <button class="btn" @click="logoutClick" style="margin-top: 13px;">로그아웃</button>
     </div>

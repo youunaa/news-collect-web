@@ -1,13 +1,22 @@
 <template>
     <section id="container" class="login">
         <div class="loginBox">
-            <h2 class="login_logo"><br>로그인</h2>
-            <form @submit.prevent="onSubmit">
+            <h2 class="login_logo"><br>회원가입</h2>
                 <table>
                     <tbody>
                         <tr>
                             <td>
-                                <strong class="login_tit" >아이디</strong>
+                                <strong class="login_tit">이름</strong>
+                                <input type="text" 
+                                    id="admin_user_id"  
+                                    v-model="loginInfo.userName" 
+                                    maxlength="50"
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="login_tit">아이디</strong>
                                 <input type="text" 
                                     id="admin_user_id"  
                                     v-model="loginInfo.userId" 
@@ -25,49 +34,50 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><input type="submit" value="로그인" class="login_btn bgClr_blue"></td>
-                        </tr>
-                        <tr>
-                            <td class="login_txt">
-                                <a @click="join" style="cursor:pointer">회원가입</a>
-                            </td>
+                            <td><input type="submit" @click="joinClick" value="회원가입" class="login_btn bgClr_blue"></td>
                         </tr>
                     </tbody>
                 </table>
-            </form>
         </div>
     </section>
 </template>
 
 <script>
-import {mapActions} from "vuex"
+import axios from "@/utils/CSNetwork.js";
 import router from '@/router'
 
 export default{
     data(){
-        return{
+        return {
             loginInfo:{
                 userId : "",
+                userName : "",
                 password : ""
             }
         }
     },
     methods:{
-        onSubmit(){
+        joinClick() {
             if(this.loginInfo.userId.length === 0){
                 alert("아이디를 입력해주세요.");
+            } else if( this.loginInfo.userName.length === 0 ){
+                alert("이름을 입력해주세요.")
             } else if( this.loginInfo.password.length === 0 ){
                 alert("비밀번호를 입력해주세요.")
-            } else{
-                this.login(this.loginInfo)
+            } else {
+                this.reqJoin()
             }
         },
         
-        join() {
-            router.push('join');
-        },
+        // 회원가입 요청
+        reqJoin() {
+            axios.reqJoin(this.loginInfo)
+            .then((res) => {
+                alert("회원가입이 정상적으로 처리 되었습니다");
+            })
+            this.$router.push({ name: "login" })
+        }
 
-        ...mapActions(['login'])
    }
 }
 </script>
