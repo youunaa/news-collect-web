@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="(item, index) in newsList" :key="index">
-                        <td>{{ (page.size * (totalPages - page.page + 1 )) - index }}</td> 
+                        <td>{{ (page.size * (totalPages - page.page )) - index }}</td> 
                         <td>{{ newsTypeFormat(item.type) }}</td>
                         <td>{{ item.keyword }}</td>
                         <td class="txt_left">
@@ -58,7 +58,7 @@ export default {
     data() {
         return {
             page:{
-                page  : 1,
+                page  : 0,
                 total : 0,
                 size : 10,
             },

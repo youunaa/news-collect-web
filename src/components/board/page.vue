@@ -1,17 +1,21 @@
 <template>
     <section class="paging">
         <a class="pagingFirst" 
-        @click = "prevPage()"
-        :disabled = "pageData.page == 1">처음</a>
-            <ul class="pagingList">
-                <li 
-                v-for = "page in countInPages" 
-                :key = "page"
-                :class = "(startPage-1)+page === pageData.page ? 'active' : null"
-                @click = "selectPage( (startPage-1)+page )"
-                > {{(startPage-1) + page}} </li>
-            </ul>
-        <a class="pagingLast" @click = "nextPage()">끝</a>
+            @click = "prevPage()"
+            :disabled = "pageData.page == 0"
+        >
+            처음
+        </a>
+        <ul class="pagingList">
+            <li  v-for="page in countInPages" 
+                :key="page"
+                :class="page - 1 === pageData.page ? 'active' : null"
+                @click="selectPage(page-1)"
+            > {{ page }}</li>
+        </ul>
+        <a class="pagingLast" @click="nextPage()">
+            끝
+        </a>
     </section>
 </template>
 <script>
@@ -23,7 +27,7 @@ export default {
             default () {
                 return {
                     total: 60,
-                    page: 1,
+                    page: 0,
                     size: 10
                 }
             }
@@ -35,41 +39,40 @@ export default {
     },
     computed: {
         startPage: function () {
-            let value = (Math.floor((this.pageData.page-1) / this.defaultPages) * this.defaultPages) + 1
-            return value
+            let value = (Math.floor((this.pageData.page+1) / this.defaultPages) * this.defaultPages) + 1;
+            return value;
         },
         totalPage: function () {
             return Math.floor(this.pageData.total / this.pageData.size) + ((this.pageData.total % this.pageData.size) == 0 ? 0 : 1)
         },
         countInPages: function () {
             let currPages = this.totalPage - (this.startPage-1)
+            
             if (currPages < this.defaultPages) {
-                return currPages
+                return currPages;
             } else {
-                return this.defaultPages
+                return this.defaultPages;
             }
         }
     },
     methods: {
         selectPage: function (page) {
-            this.pageData.page = page
-            this.$emit("onPage",  page)
+            this.pageData.page = page;
+            this.$emit("onPage",  page);
         },
 
         prevPage: function () {
-            if (this.pageData.page == 1) {
+            if (this.pageData.page == 0) {
                 return
             }
-            
-            this.selectPage(this.pageData.page - 1)
+            this.selectPage(this.pageData.page - 1);
         },
 
         nextPage: function () {
-            if (this.pageData.page == this.totalPage) {
+            if (this.pageData.page == this.totalPage-1) {
                 return
             }
-            
-            this.selectPage(this.pageData.page + 1)
+            this.selectPage(this.pageData.page + 1);
         }
     }
 }
